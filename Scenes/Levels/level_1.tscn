@@ -1,3 +1,38 @@
-[gd_scene format=3 uid="uid://mhmyclypywft"]
+[gd_scene load_steps=5 format=3 uid="uid://mhmyclypywft"]
+
+[ext_resource type="Script" uid="uid://bs12xg64vh6qa" path="res://Scripts/player.gd" id="1_3mqfk"]
+[ext_resource type="Texture2D" uid="uid://dy253l2ijyuqb" path="res://Sprites/People.png" id="1_tlcug"]
+[ext_resource type="Texture2D" uid="uid://dq3boaqnrlhny" path="res://Sprites/Weapons.png" id="3_iixi8"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cyadu"]
+radius = 3.0
+height = 9.0
 
 [node name="Main" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+motion_mode = 1
+script = ExtResource("1_3mqfk")
+
+[node name="Sprite" type="Sprite2D" parent="Player"]
+texture = ExtResource("1_tlcug")
+region_enabled = true
+region_rect = Rect2(2, 121, 7, 9)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("CapsuleShape2D_cyadu")
+
+[node name="Weapon" type="Node2D" parent="Player"]
+
+[node name="WeaponSprite" type="Sprite2D" parent="Player/Weapon"]
+position = Vector2(0, -3)
+rotation = -0.785398
+texture = ExtResource("3_iixi8")
+region_enabled = true
+region_rect = Rect2(21, 81, 8, 8)
+
+[node name="Muzzle" type="Node2D" parent="Player/Weapon"]
+position = Vector2(0, -5)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
